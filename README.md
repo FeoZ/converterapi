@@ -52,13 +52,13 @@ Here is a possible implementation in production:
 
 ### Kubernetes
 
-- I uploaded the manifest used to mak it run on my kubernetes.
-- This is a Kubernetes instance runnin gon Azure (AKS)
-  - It has automatic certificate renew and autopmatic DNS updating
-  - The ingress/egress flow are passing through an external firewall
+- I uploaded the manifest used to make it run on my kubernetes.
+- This is a Kubernetes instance running on Azure (AKS)
+  - It has automatic certificate renewal and automatic DNS updating
+  - The ingress/egress flows are passing through an external firewall
 - Note that the CI/CD is not implemented
 
-- You can check the manifest used in:
+- You can check the manifest files used in:
 
       ./kubernetes-nanifests
 

@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: converterapi.k8s-net.privatelink.westeurope.azmk8s.io
+    - host: <YOUR PRIVATE DNS ZONE FQDN>
       http:
         paths:
           - path: /
@@ -25,16 +25,16 @@ metadata:
   name: converterapi-public-ingress
   namespace: converterapi-ns
   annotations:
-    external-dns.alpha.kubernetes.io/target: 20.105.131.122
+    external-dns.alpha.kubernetes.io/target: <YOUR FIREWALL IP>
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - converterapi.lactogen.net
+        - <YOUR PUBLIC FQDN>
       secretName: converterapi-tls
   rules:
-    - host: converterapi.lactogen.net
+    - host: <YOUR PUBLIC FQDN>
       http:
         paths:
           - path: /

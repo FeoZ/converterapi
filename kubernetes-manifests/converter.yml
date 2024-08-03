@@ -1,0 +1,39 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: converterapi-ns
+  labels:
+    name: converterapi-ns
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: converterapi
+  namespace: converterapi-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: converterapi
+  template:
+    metadata:
+      labels:
+        app: converterapi
+    spec:
+      containers:
+        - name: converterapi
+          image: <YOUR IMAGE LOCATION>
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: converterapi
+  namespace: converterapi-ns
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+  selector:
+    app: converterapi

@@ -36,6 +36,8 @@ You will discover what I prepared. I hope you will have as much fun exploring it
 
 ### Description
 
+**You can try the application [HERE](https://converterapi.lactogen.net/)**
+
 Here is a possible implementation in production:
 
 - Let's host my application on a Kubernetes
@@ -46,7 +48,19 @@ Here is a possible implementation in production:
   - TLS terminaison endpoint
   - Can be used with a certbot to renew all the certificates
 - For the public DNS I did not precise, it could be hosted on Cloudflare, Azure..
-- 2 Environments, they take as a reference two different branches for Prod and Staging. We could add a third environment but as a matter of simplicity, we will talk only about one staging here. 
+- 2 Environments, they take as a reference two different branches for Prod and Staging. We could add a third environment but as a matter of simplicity, we will talk only about one staging here.
+
+### Kubernetes
+
+- I uploaded the manifest used to mak it run on my kubernetes.
+- This is a Kubernetes instance runnin gon Azure (AKS)
+  - It has automatic certificate renew and autopmatic DNS updating
+  - The ingress/egress flow are passing through an external firewall
+- Note that the CI/CD is not implemented
+
+- You can check the manifest used in:
+
+      ./kubernetes-nanifests
 
 ### Scheme
 

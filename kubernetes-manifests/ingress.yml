@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: converterapi-private-ingress
+  namespace: converterapi-ns
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: converterapi.k8s-net.privatelink.westeurope.azmk8s.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: converterapi
+                port:
+                  number: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: converterapi-public-ingress
+  namespace: converterapi-ns
+  annotations:
+    external-dns.alpha.kubernetes.io/target: 20.105.131.122
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - converterapi.lactogen.net
+      secretName: converterapi-tls
+  rules:
+    - host: converterapi.lactogen.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: converterapi
+                port:
+                  number: 8080
